@@ -24,6 +24,13 @@ contrast
 - matplotlib
 - scipy
 
+Execute following commands for install library:
+```sh
+$ pip install opencv-python
+$ pip install numpy
+$ pip install matplotlib
+```
+
 ## Results
 
 -Object centering detects the object in binary form and places at the center of the image. It is really useful to create dataset during training for OCR
@@ -34,6 +41,9 @@ contrast
 
 <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/card.png" width = "400" height = "300"/> <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/card_result.jpg" width = "400" height = "300"/> 
 
+-Image Enhancement: I implemented a Gaussian blur technique to remove noise from the image. Please be careful when analyzing your image, you may have to convert BGR to RGB before processing. There are lots of python functions performing several enhancement methods. 
+
+<img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/lena.png" width = "400" height = "300"/> <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/results/lena_blurred.png" width = "400" height = "300"/>
 
 
 
