@@ -24,4 +24,8 @@ contrast
 - matplotlib
 - scipy
 
+## Results
+
+Object centering detects the object in binary form and places at the center of image. It is really useful for training when preparing dataset for OCR
+
 <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/fig1.png" width = "100" height = "200"/> <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/fig1_centered.png" width="100" height="200"/> <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/fig2.png" width="300" height="100"/> <img src="https://github.com/burak0006/ImagePreprocessing/blob/main/test_images/fig2_centered.png" width="300" height="100"/> 
