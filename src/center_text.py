@@ -1,10 +1,7 @@
 import numpy as np
-import string
-import pickle
 import cv2
-import numpy as np
-import os
 import matplotlib.pyplot as plt
+
 
 '''
 Setting a single object in the center of the image
@@ -27,6 +24,7 @@ aligned to the center
 '''
 
 def center_letter(img, desired_width, desired_height):
+   
     # Binary conversion of the gray-scaled image
     th, threshed = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
@@ -44,13 +42,7 @@ def center_letter(img, desired_width, desired_height):
     cY = int(M["m01"] / M["m00"])
     x, y, w, h = cv2.boundingRect(cnts[0])
 
-    # if designed height and width of the object are zero, it returns
-    # original shape of the image without resizing.
-
-    if desired_height==0 and desired_width==0:
-        height, width = img.shape
-    else:
-        height, width = desired_height, desired_width
+    height, width = img.shape
 
     # Creating an empty image and calculating the displacement from the center of new image
     newimg = np.zeros(shape=(height, width), dtype=np.uint8)
@@ -64,24 +56,50 @@ def center_letter(img, desired_width, desired_height):
 
     # Assigning to new image
     dst[yy:yy + h, xx:xx + w] = threshed[y:y + h, x:x + w]
+    
+    template = []
+
+    # Final image with desired resolution
+    fimg = np.zeros((desired_height,desired_width),np.uint8)
+
+    if desired_height!=0 and desired_width!=0:
+
+        if desired_height>=h or desired_width>=w:
+
+            template = dst[yy:yy+h,xx:xx+w]
+
+            y = int((desired_height-h)/2)
+            x = int((desired_width-w)/2)
+            
+            # Placing the object in the center of image without resolution loss
+            fimg[y:y+h,x:x+w] = template
+
+        else:
+            
+    # if the height and width of the object are bigger than the desired resolution, it returns original image with centered object
+
+            fimg = dst
+            print('The object has higher resolution than desired resolution. Automatically set to original image')
 
     # Normalization of the image
-    dst = dst / 255
-    return dst
+    fimg = fimg / 255
+
+    return fimg
 
 
 if __name__ == '__main__':
     
-    
-    # if you type 0,0, it keeps original size of the image
+ 
     # Please note that if the image contains more than single object,
     # it creates error! 
     
     test_image = cv2.imread('../test1.jpg',0)
-    output_image = center_letter(test_image,0,0)
+    output_image = center_letter(test_image,80,80)
     
     cv2.imshow('centered_image',output_image)
     cv2.imshow('original_image',test_image)
     
     cv2.waitKey()
+
+
 
