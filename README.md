@@ -30,6 +30,7 @@ $ pip install opencv-python
 $ pip install numpy
 $ pip install matplotlib
 ```
+You may run each file from terminal by typing the name of the script and change the parameters to obtain the best result
 
 ## Results
 
